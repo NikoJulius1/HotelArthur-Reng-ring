@@ -3,7 +3,7 @@ import requests
 # Fetch and print room bookings
 def fetch_bookings():
     try:
-        response = requests.get("http://localhost:5000/bookings")
+        response = requests.get("http://host.docker.internal:5000/bookings")
         response.raise_for_status()  # Raise an error for bad status codes
         bookings = response.json()
         
@@ -23,7 +23,7 @@ def fetch_bookings():
 # Mark a booking as done
 def mark_booking_done(booking_id):
     try:
-        response = requests.put(f"http://localhost:5000/bookings/{booking_id}/mark_done")
+        response = requests.put(f"http://host.docker.internal:5000/bookings/{booking_id}/mark_done")
         response.raise_for_status()
         print("Booking marked as done.")
     except requests.exceptions.RequestException as e:

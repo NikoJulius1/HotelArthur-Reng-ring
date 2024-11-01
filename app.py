@@ -4,8 +4,8 @@ import requests
 # Fetch and print room bookings
 def fetch_bookings():
     try:
-        response = requests.get("http://host.docker.internal:5001/bookings")
-        #Tjekker for fejl, og "raiser" en status ved fejl
+        response = requests.get("http://booking-service:5001/bookings")
+            #Tjekker for fejl, og "raiser" en status ved fejl
         response.raise_for_status()
         #Parser det til en liste af bookings. Parser JSON til Python object
         bookings = response.json()
@@ -28,7 +28,7 @@ def fetch_bookings():
 def mark_booking_done(booking_id):
     try:
         #booking_id vælger specifikke værelse
-        response = requests.put(f"http://host.docker.internal:5001/bookings/{booking_id}/mark_done")
+        response = requests.put(f"http://booking-service:5001/bookings/{booking_id}/mark_done")
         #Tjekker for fejl, og "raiser" en status ved fejl
         response.raise_for_status()
         print("Booking marked as done.")
